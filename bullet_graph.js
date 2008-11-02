@@ -1,4 +1,16 @@
 (function($) {
+  $.fn.canvas = function(width, height) {
+    var canvas = $('<canvas width="' + width + '" height="' + height + '"></canvas>').appendTo(this).get(0);
+    
+    if ($.browser.msie) {
+      canvas = window.G_vmlCanvasManager.initElement(canvas);
+    }
+    
+    return canvas.getContext("2d");
+  };
+}(jQuery));
+
+(function($) {
   $.fn.bulletGraph = function(min, max, marker, options) {
     options = $.extend({
       baseColor: '#444',
@@ -13,8 +25,7 @@
     }, options ? options : {});
     
     var getContext = function(el) {
-      var canvas = $('<canvas width="' + options.width + '" height="' + options.height + '"></canvas>').appendTo(el).get(0);
-      return canvas.getContext("2d");
+      return $(el).canvas(options.width, options.height);
     };
     
     var normalizeX = function(n) {
