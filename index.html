@@ -4,12 +4,139 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     
-    <link rel="stylesheet" href="/em_reset.css" type="text/css" media="screen" charset="utf-8">
+    <style type="text/css" media="screen">
+      /*
+       * Eric Meyer reset 
+       * http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/
+       */
+      html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, font, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td {
+      	margin: 0;
+      	padding: 0;
+      	border: 0;
+      	outline: 0;
+      	font-weight: inherit;
+      	font-style: inherit;
+      	font-size: 100%;
+      	font-family: inherit;
+      	vertical-align: baseline;
+      }
+      /* remember to define focus styles! */
+      :focus {
+      	outline: 0;
+      }
+      body {
+      	line-height: 1;
+      	color: black;
+      	background: white;
+      }
+      ol, ul {
+      	list-style: none;
+      }
+      /* tables still need 'cellspacing="0"' in the markup */
+      table {
+      	border-collapse: separate;
+      	border-spacing: 0;
+      }
+      caption, th, td {
+      	text-align: left;
+      	font-weight: normal;
+      }
+      blockquote:before, blockquote:after,
+      q:before, q:after {
+      	content: "";
+      }
+      blockquote, q {
+      	quotes: "" "";
+      }
+    </style>
     
     <style type="text/css" media="screen">
-      .graph {
-        border: 1px solid #000;
-        width: 100px;
+      /* The Silver Bullet */
+      /* TODO: fix the leading */
+      html {
+        font-family: Helvetica Arial sans-serif;
+        font-size: 75%;
+        background-color: #eee;
+      }
+      
+      /*
+       * Maybe use html>body per
+       * http://24ways.org/2006/compose-to-a-vertical-rhythm
+       */
+      body {
+        font-size: 12px;
+        margin: 1em 5em 1em 5em;
+        padding: 0.25em;
+        letter-spacing: 0.025em;
+        background-color: #fff;
+      }
+      
+      h1, h2, h3 {
+        font-family: Futura, Verdana, serif;
+        letter-spacing: 0.05em;
+      }
+      
+      h1 {
+        font-size: 5em;
+        line-height: 1em;
+        margin-bottom: 0.3em;
+      }
+      
+      h2 {
+        font-size: 3em;
+        line-height: 1em;
+        margin-bottom: 0.5em;
+      }
+      
+      h3 {
+        font-size: 2em;
+        line-height: 1em;
+        margin-bottom: 0.75em;
+      }
+      
+      p, div, ul {
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        line-height: 1.5em;
+      }
+      
+      code {
+        font-family: Inconsolata, "Bitstream Vera Sans Mono", fixed;
+        font-size: 0.9em;
+        line-height: 1.6667;
+        margin-bottom: 1.6667;
+      }
+      
+      abbr, acronym {
+        font-variant: small-caps;
+      }
+      
+      li {
+        list-style-type: disc;
+      }
+      
+      a {
+        color: #c11;
+      }
+      
+      a:focus {
+        outline: 1px;
+      }
+      
+      a:visited {
+        color: #a99;
+      }
+      
+      #footer {
+        text-align: center;
+        text-transform: uppercase;
       }
     </style>
     
@@ -17,21 +144,81 @@
     <script src="/excanvas.js" type="text/javascript" charset="utf-8"></script>
     <script src="/bullet_graph.js" type="text/javascript" charset="utf-8"></script>
     
-    <title>Bullet Graphs</title>
+    <title>Silver Bullet - nice JS Bullet Graphs</title>
     
   </head>
   
   <body>
     <h1>Bullet Graphs</h1>
     
-    <div class="data">
-      Meaningless data
+    <h2>The Setup</h2>
+    
+    <div id="description">
+      <p>
+        Stephen Few created the bullet graph in his work creating information dashboards. They are a concise and compact way to visualize how data points match to a goal. In Few's words, bullet graphs visualize <a href="http://www.perceptualedge.com/blog/?p=217" title="Visual Business Intelligence - Bullet Graphs for Not-to-Exceed Targets">&quot;not-to-execeed targets&quot;</a>.
+      </p>
       
+      <h3>Features</h3>
+      
+      <ul>
+        <li>Specify the minimum and maximum values, low and high range values and the marker value</li>
+        <li>Draw with or without end caps</li>
+        <li>Customize colors to suit</li>
+      </ul>
+      
+      <h3>Technology</h3>
+      
+      <ul>
+        <li><acronym>HTML5</acronym> <code>canvas</code> for drawing</li>
+        <li><a href="http://excanvas.sourceforge.net/" title="ExplorerCanvas">excanvas</a> for IE compatibility</li>
+      </ul>
+      
+      <p>
+        Silver Bullet is a jQuery plugin.
+      </p>
+      
+      <h3>Compatibility</h3>
+      
+      <p>
+        Silver Bullet has been tested with Firefox 3, Safari 3.1 and IE 7.
+      </p>
+      
+    </div>
+    
+    <h2>The Science</h2>
+    
+    <div id="examples">
+      
+      <h3>A basic graph</h3>
+      <pre><code>
+        $('.graph').bulletGraph(25, 75, 50);
+      </code></pre>
       <div class="graph"></div>
+      
+      <h3>A huge graph</h3>
+      <pre><code>
+        $('.hugeGraph').bulletGraph(100, 300, 200, {width: 400, height: 100});
+      </code></pre>
       <div class="hugeGraph"></div>
+      
+      <h3>A graph with no edges</h3>
+      <pre><code>
+        $('.neater').bulletGraph(150, 375, 350, {width: 400, drawEdges: false});
+      </code></pre>
       <div class="neater"></div>
       
-      <div class="example">
+      <h3>Specifying a graph with <abbr>POSH</abbr></h3>
+      <pre><code>
+        $('.posh').each(function() {
+          var el = $(this);
+          el.bulletGraph(el.children('.graph-low').text(),
+                         el.children('.graph-high').text(),
+                         el.children('.graph-marker').text(),
+                         {width: el.children('.graph-max').text()});
+          el.children().empty('span');
+        });
+      </code></pre>
+      <div class="posh">
         <span class="graph-min">0</span>
         <span class="graph-max">100</span>
         <span class="graph-low">30</span>
@@ -40,6 +227,19 @@
       </div>
       
     </div>
+    
+    <h2>Executive Summary</h2>
+    
+    <ul>
+      <li>Bullet Graphs are a good information visualization tool</li>
+      <li>Silver Bullet makes creating bullet graphs on the web easy</li>
+      <li>Adam Keys built it</li>
+      <li>Have an awesome day!</li>
+    </ul>
+    
+    <p id="footer">
+      &copy; 2008 <a href="http://therealadam.com/" title="The Real Adam &#8211; The cult of Adam Keys">Adam Keys</a>
+    </p>
     
   </body>
 </html>
