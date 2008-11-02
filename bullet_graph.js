@@ -78,11 +78,12 @@ jQuery(function($) {
   $('.graph').bulletGraph(25, 75, 50);
   $('.hugeGraph').bulletGraph(100, 300, 200, {width: 400, height: 100});
   $('.neater').bulletGraph(150, 375, 350, {width: 400, drawEdges: false});
-  $('.example').each(function() {
-    $(this).bulletGraph($(this).children('.graph-low').text(),
-                        $(this).children('.graph-high').text(),
-                        $(this).children('.graph-marker').text(),
-                        {width: $(this).children('.graph-max').text()});
-    $(this).children().empty('span');
+  $('.posh').each(function() {
+    var el = $(this);
+    el.bulletGraph(el.children('.graph-low').text(),
+                   el.children('.graph-high').text(),
+                   el.children('.graph-marker').text(),
+                   {width: el.children('.graph-max').text()});
+    el.children().empty('span');
   });
 });
