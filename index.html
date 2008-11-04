@@ -83,35 +83,40 @@
         letter-spacing: 0.05em;
       }
       
+      /* Doesn't play into the page leading */
+      
       h1 {
         font-size: 5em;
         line-height: 1em;
         margin-bottom: 0.3em;
       }
       
+      /* Leading applies below */
+      
       h2 {
-        font-size: 3em;
-        line-height: 1em;
-        margin-bottom: 0.5em;
+        font-size: 1.66666667em;
+        line-height: 0.9em;
+        margin-bottom: 0.9em;
       }
       
       h3 {
-        font-size: 2em;
-        line-height: 1em;
-        margin-bottom: 0.75em;
+        font-size: 1.3333333em;
+        line-height: 1.125em;
+        margin-bottom: 1.125em;
       }
       
       p, div, ul {
-        margin-top: 1.5em;
-        margin-bottom: 1.5em;
+        font-size: 1em;
         line-height: 1.5em;
+        /*margin-top: 1.5em;*/
+        margin-bottom: 1.5em;
       }
       
       code {
         font-family: Inconsolata, "Bitstream Vera Sans Mono", fixed;
-        font-size: 0.9em;
-        line-height: 1.6667;
-        margin-bottom: 1.6667;
+        font-size: 0.833333333334em;
+        line-height: 1.8em;
+        margin-bottom: 1.8em;
       }
       
       abbr, acronym {
@@ -135,6 +140,7 @@
       }
       
       #footer {
+        margin-top: 5em;
         text-align: center;
         text-transform: uppercase;
       }
@@ -168,13 +174,8 @@
       
       <h3>Technology</h3>
       
-      <ul>
-        <li><acronym>HTML5</acronym> <code>canvas</code> for drawing</li>
-        <li><a href="http://excanvas.sourceforge.net/" title="ExplorerCanvas">excanvas</a> for IE compatibility</li>
-      </ul>
-      
       <p>
-        Silver Bullet is a jQuery plugin.
+        Silver Bullet is a jQuery plugin. It uses the <acronym>HTML5</acronym> <code>canvas</code> for drawing< and <a href="http://excanvas.sourceforge.net/" title="ExplorerCanvas">excanvas</a> for IE compatibility.
       </p>
       
       <h3>Compatibility</h3>
@@ -189,41 +190,55 @@
     
     <div id="examples">
       
-      <h3>A basic graph</h3>
-      <pre><code>
-        $('.graph').bulletGraph(25, 75, 50);
-      </code></pre>
-      <div class="graph"></div>
+      <div>
+        <h3>A basic graph</h3>
+        <pre><code>$('.graph').bulletGraph(25, 75, 50);</code></pre>
+        <div class="graph"></div>
+      </div>
       
-      <h3>A huge graph</h3>
-      <pre><code>
-        $('.hugeGraph').bulletGraph(100, 300, 200, {width: 400, height: 100});
-      </code></pre>
-      <div class="hugeGraph"></div>
+      <div>
+        <h3>A huge graph</h3>
+        <pre><code>
+          $('.hugeGraph').bulletGraph(100, 300, 200, {width: 400, height: 100});
+        </code></pre>
+        <div class="hugeGraph"></div>
+      </div>
       
-      <h3>A graph with no edges</h3>
-      <pre><code>
-        $('.neater').bulletGraph(150, 375, 350, {width: 400, drawEdges: false});
-      </code></pre>
-      <div class="neater"></div>
+      <div>
+        <h3>A graph with no edges</h3>
+        <pre><code>
+          $('.neater').bulletGraph(150, 375, 350, {width: 400, drawEdges: false});
+        </code></pre>
+        <div class="neater"></div>
+      </div>
       
-      <h3>Specifying a graph with <abbr>POSH</abbr></h3>
-      <pre><code>
-        $('.posh').each(function() {
-          var el = $(this);
-          el.bulletGraph(el.children('.graph-low').text(),
-                         el.children('.graph-high').text(),
-                         el.children('.graph-marker').text(),
-                         {width: el.children('.graph-max').text()});
-          el.children().empty('span');
-        });
-      </code></pre>
-      <div class="posh">
-        <span class="graph-min">0</span>
-        <span class="graph-max">100</span>
-        <span class="graph-low">30</span>
-        <span class="graph-high">78</span>
-        <span class="graph-marker">40</span>
+      <div>
+        <h3>Specifying a graph with <abbr>POSH</abbr></h3>
+        <pre><code>
+          $('.posh').each(function() {
+            var el = $(this);
+            el.bulletGraph(el.children('.graph-low').text(),
+                           el.children('.graph-high').text(),
+                           el.children('.graph-marker').text(),
+                           {width: el.children('.graph-max').text()});
+            el.children().empty('span');
+          });
+        </code></pre>
+        <div class="posh">
+          <span class="graph-min">0</span>
+          <span class="graph-max">100</span>
+          <span class="graph-low">30</span>
+          <span class="graph-high">78</span>
+          <span class="graph-marker">40</span>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Sparkline-style</h3>
+        
+        <p>
+          Last quarter's sales were very strong, so we've aimed to surpass those. Our progress so far is strong, <span class="sparkline"><span class="graph-min">15</span><span class="graph-max">85</span> with sales of <span class="graph-low">34</span> units already, <span class="graph-marker">64</span> projected by end of month and a target of <span class="graph-high">70</span> units.</span> We still have to make better progress.
+        </p>
       </div>
       
     </div>
@@ -240,6 +255,8 @@
     <p id="footer">
       &copy; 2008 <a href="http://therealadam.com/" title="The Real Adam &#8211; The cult of Adam Keys">Adam Keys</a>
     </p>
+    
+    <!-- This HTML was written by hand. Sucks to your markup pidgins. -->
     
   </body>
 </html>
